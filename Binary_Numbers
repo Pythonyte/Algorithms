@@ -1,0 +1,19 @@
+def appendatbegin(x,L):
+    print('x is',x)
+    return [x + e for e in L]
+
+def bitstring(n):
+    print('n is',n)
+    if n==0:
+        return []
+    if n==1:
+        return ['0','1']
+    else:
+        return (appendatbegin('0',bitstring(n-1)) + appendatbegin('1',bitstring(n-1)))
+
+# input : N
+# Output : All binary numbers of length N.
+# Example: 1 =>  [0,1]
+# 2=> [00,01,10,11]
+
+print(bitstring(3))
