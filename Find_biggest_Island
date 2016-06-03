@@ -1,0 +1,111 @@
+'''
+Matrix=[[0,0,1,0,1,0],
+        [1,0,1,0,1,1],
+        [1,0,1,1,1,0],
+        [1,0,1,0,1,0]]
+rs=4
+cs=6
+
+Matrix=[[0,0,0,0,1,0],
+        [1,0,1,1,1,1],
+        [1,0,1,0,1,0]]
+rs=3
+cs=6
+Matrix=[[1,1,0,0,0],
+        [1,0,1,1,0],
+        [1,1,0,1,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0]]
+rs=5
+cs=5
+'''
+
+Matrix=[[1,0,1,1,1,1,0],
+        [0,0,1,0,0,0,0],
+        [0,0,1,1,1,1,0],
+        [1,0,0,0,0,1,0]]
+rs=4
+cs=7
+
+##################################################################
+
+def replace_parent_left(r,c,replacement,NewMatrix,rs,cs,IsLandArea):
+    if r>=0 and c>=0:
+        NewMatrix[r][c]=replacement
+        IsLandArea[NewMatrix[r][c]]-=1
+    if NewMatrix[r-1][c] and r-1>=0 and c>=0:
+        replace_parent_left(r-1,c,replacement,NewMatrix,rs,cs,IsLandArea)
+    if NewMatrix[r][c-1] and r>=0 and c-1>=0:
+        replace_parent_left(r,c-1,replacement,NewMatrix,rs,cs,IsLandArea)
+    
+
+def replace_parent_right(r,c,replacement,NewMatrix,rs,cs,IsLandArea):
+    if r>=0 and c>=0:
+        NewMatrix[r][c]=replacement
+        IsLandArea[NewMatrix[r][c]]-=1
+    print('row',r,'col',c)
+    if  r>0 and c>=0 and NewMatrix[r-1][c]:
+        replace_parent_right(r-1,c,replacement,NewMatrix,rs,cs,IsLandArea)
+    if  r>0 and c+1<cs and NewMatrix[r][c+1]:
+        replace_parent_right(r,c+1,replacement,NewMatrix,rs,cs,IsLandArea)
+
+
+def get_parent(row,col,Matrix,NewMatrix,i,IsLandArea):
+    if row==0 and col==0:
+        return False
+    elif row==0:
+        return NewMatrix[row][col-1]
+    elif col==0:
+        return NewMatrix[row-1][col]
+    elif NewMatrix[row][col-1] > 1 and NewMatrix[row-1][col] == False:
+        return NewMatrix[row][col-1]
+    elif NewMatrix[row-1][col] > 1 and NewMatrix[row][col-1] == False:
+        return NewMatrix[row-1][col]
+    elif NewMatrix[row-1][col] > 1 and NewMatrix[row][col-1] > 1:
+          if IsLandArea[NewMatrix[row-1][col]] > IsLandArea[NewMatrix[row][col-1]]:
+             replace_parent_left(row,col-1,NewMatrix[row-1][col],NewMatrix,rs,cs,IsLandArea)
+             replace_parent_right(row,col-1,NewMatrix[row-1][col],NewMatrix,rs,cs,IsLandArea)
+             return NewMatrix[row-1][col]
+          else:
+             replace_parent_left(row-1,col,NewMatrix[row][col-1],NewMatrix,rs,cs,IsLandArea)
+             replace_parent_right(row-1,col,NewMatrix[row][col-1],NewMatrix,rs,cs,IsLandArea)
+             return NewMatrix[row][col-1]
+    else:
+        return False
+
+def Find_biggest_Island(rs,cs,Matrix):
+    i=1
+    IsLandArea={}
+    NewMatrix=[[0 for x in range(cs)] for y in range(rs)]
+    for row in range(0,rs):
+        for col in range(0,cs):
+            if Matrix[row][col] == 0:
+                NewMatrix[row][col]=False
+            elif Matrix[row][col] == 1:
+                parent=get_parent(row,col,Matrix,NewMatrix,i,IsLandArea)
+                if parent:
+                    NewMatrix[row][col]=parent
+                    IsLandArea[parent]+=1
+                else:
+                    i=i+1
+                    NewMatrix[row][col]=i
+                    IsLandArea[i]=1
+    print('Area of IsLand is:',IsLandArea)
+    return NewMatrix
+
+
+#################################################################
+# Input: N*M matrix wth 0 and 1.
+# Assume 0 as water and 1 as land.
+# Output: return the Island having maximum area.
+
+print('Input Array Is:')
+for i in Matrix:
+    print(i)
+print('Output Array Is:')
+for i in Find_biggest_Island(rs,cs,Matrix):
+    print(i)
+
+
+
+
