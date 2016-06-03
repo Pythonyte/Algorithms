@@ -1,0 +1,52 @@
+from math import sqrt
+
+def check_prime(number):
+   if number==2:
+      return True
+   if number%2 == 0 :
+      return False
+   i=3
+   while i < int(sqrt(number)+1):
+      if number%i == 0:
+         return False
+      i+=2
+   return True
+
+def prime_factors(num):
+   i=2
+   arr=[]
+   if check_prime(num):
+      arr.append(num)
+   while i < int(sqrt(num)+1):
+      if num%i == 0:
+         d=num/i
+         if check_prime(i):
+            arr.append(i)
+         if check_prime(d):
+            arr.append(d)
+      i+=1
+   return arr
+
+
+def largest_prime_factor(num):
+   i=2
+   largest=0
+   if check_prime(num):
+      largest=num
+   else:
+      while i < int(sqrt(num)+1):
+         if num%i == 0:
+            d=num/i
+            if check_prime(i) and i>largest:
+               largest=i
+            if check_prime(d) and d>largest:
+               largest=d
+         i+=1
+   return largest
+
+
+               
+   
+#600851475143
+print(prime_factors(57))     
+print(largest_prime_factor(57))    
