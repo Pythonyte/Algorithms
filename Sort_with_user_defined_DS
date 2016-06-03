@@ -1,0 +1,31 @@
+class container(object):
+    def __init__(self,Height,Cuts):
+       self.Height=Height
+       self.Cuts=Cuts
+
+    def __cmp__(self, other):
+        if self.Cuts > other.Cuts:
+            return 1
+        elif self.Cuts < other.Cuts:
+            return -1
+        else:
+            if self.Height > other.Height:
+                return -1
+            elif self.Height < other.Height:
+                return 1
+            else:
+                return 0
+
+#####################################################
+#Input:  Two array H and C
+#OUTPUT: Sort array C in ascending order and for same elements, Higher element of the same index of H is preferrable 
+H=[2,5,12,9,7]
+C=[49,10,5,21,5]
+customList=[]
+
+for i in range(5):
+    customList.append(container(H[i],C[i]))
+
+print('C -> H')
+for i in sorted(customList):
+    print(i.Cuts,'->',i.Height)
