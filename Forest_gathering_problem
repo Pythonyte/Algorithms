@@ -1,0 +1,34 @@
+H=[2,5,2] #height array
+R=[2,1,1]#rate of growth array
+W=12      #Wood required
+L=15     #Min hight of tree for cutting
+N=3    #number of trees in garden
+
+def monthBinarySearch(W):
+    first = 0
+    last = W-1
+    isMatured = False
+
+    while first<=last and not isMatured:
+        midpoint = (first + last)//2
+        if is_month_correct(midpoint) and not is_month_correct(midpoint-1):
+            isMatured = True
+        else:
+            if is_month_correct(midpoint):
+                last = midpoint-1
+            else:
+                first = midpoint+1
+
+    return midpoint
+
+def is_month_correct(months):
+   sum=0
+   for i in range(0,N):
+      TSize=H[i] + R[i]*months
+      if TSize >= L:
+          sum+=TSize
+          if sum >= W:
+             return True
+   return False
+
+print(monthBinarySearch(W))
