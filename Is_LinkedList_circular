@@ -42,12 +42,15 @@ def Print_List(self):
 def IsCircular_way1(self):
     if not self.head:
         return print('LinkList is empty.')
-    if self.length == 1 and self.head.getNext() == self.head:
-        return print("\n way1: List is Circular")
+    if self.length == 1:
+        if self.head.getNext() == self.head:
+            return print("\n way1: List is Circular")
+        else:
+            return print("\n way1: List is not Circular")
     current=self.head
     TestNode=Node()
     TestNode.setData('test')
-    while current.getNext().getNext():
+    while current.getNext() and current.getNext().getNext():
         if current.getNext().getNext().getData() == TestNode.getData():
             return print("\n way1: List is Circular")
         TestNode=Node()
@@ -57,7 +60,8 @@ def IsCircular_way1(self):
         current=current.getNext().getNext()
     return print("\n way1: List is not Circular")
     
-
+    
+    
 # space O(1)
 # time O(N)
 def IsCircular_way2(self):
@@ -65,9 +69,12 @@ def IsCircular_way2(self):
         return print('LinkList is empty.')
     ptr=self.head
     ptr3=self.head
-    while ptr3.getNext().getNext():
+    while ptr3.getNext() and ptr3.getNext().getNext():
         ptr = ptr.getNext()
         ptr3 = ptr3.getNext().getNext()
         if ptr3 == ptr:
             return print("\n way2: List is Circular")
     return print("\n way2: List is not Circular")
+
+
+
