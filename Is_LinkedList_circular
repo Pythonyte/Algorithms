@@ -1,0 +1,73 @@
+# check if linked list is circular or not::
+
+def insertAtEnd(self,data):
+    newNode=Node()
+    newNode.setData(data)
+    if not self.head:
+        self.head=newNode
+    else:
+        current=self.head
+        while current.getNext():
+            current=current.getNext()
+        current.setNext(newNode)
+    self.length+=1
+
+def point_to_node(self,num):
+    if not self.head:
+        return(print('LL empty'))
+    else:
+        current=self.head
+        DestinationNode=self.head
+        i=1
+        while current.getNext():
+            if i == num:
+                DestinationNode=current
+            i+=1
+            current=current.getNext()
+
+        current.setNext(DestinationNode) # last node pointing to numth node
+
+
+
+def Print_List(self):
+    current = self.head
+    i=0
+    while current and i < self.length+1:
+        print(current.getData(),'-> ',end='')
+        current=current.getNext()
+        i+=1
+   
+#time O(N)
+#spcae O(N)
+def IsCircular_way1(self):
+    if not self.head:
+        return print('LinkList is empty.')
+    if self.length == 1 and self.head.getNext() == self.head:
+        return print("\n way1: List is Circular")
+    current=self.head
+    TestNode=Node()
+    TestNode.setData('test')
+    while current.getNext().getNext():
+        if current.getNext().getNext().getData() == TestNode.getData():
+            return print("\n way1: List is Circular")
+        TestNode=Node()
+        TestNode.setData('test')
+        TestNode.setNext(current.getNext())
+        current.setNext(TestNode)
+        current=current.getNext().getNext()
+    return print("\n way1: List is not Circular")
+    
+
+# space O(1)
+# time O(N)
+def IsCircular_way2(self):
+    if not self.head:
+        return print('LinkList is empty.')
+    ptr=self.head
+    ptr3=self.head
+    while ptr3.getNext().getNext():
+        ptr = ptr.getNext()
+        ptr3 = ptr3.getNext().getNext()
+        if ptr3 == ptr:
+            return print("\n way2: List is Circular")
+    return print("\n way2: List is not Circular")
