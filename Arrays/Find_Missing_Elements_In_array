@@ -1,0 +1,20 @@
+'''
+Find_Missing_Elements_In_array
+Array1 is [1..N]
+Array2 is of M size (N>M)
+In Array2 some elements are missing and some elements are duplicate .
+U have to find missing elements
+
+Example:
+Array1: [1 2 3 4 5]
+Array2: [ 4 2 4 ]
+Output => Missing Elements : 1 , 3 , 5
+
+Algo1: Time O(N) space O(1)
+for i=0 to length of array2
+    Array1[Array2[i] - 1] = -1 #make -1 to value in array1 which is present in array2
+for i=0 to length of array1
+    if Array[i] is -1:
+        print 'Missing element: Array[i]'
+        Array[i]=i+1 # modifying the array2 as previous
+'''
