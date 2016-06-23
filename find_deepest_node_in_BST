@@ -1,0 +1,33 @@
+'''
+Find deepest node of a BST:
+Algorithm:
+MaxNode=0
+Maxdepth=0
+
+function Find_deepest(root,depth):
+  if root is leaf node:
+    if depth >= maxdepth
+        replace maxdepth
+        replace maxnode to root.data
+  
+  if root have left:
+    Find_deepest(root.left,depth+1)
+  if root have right:
+    Find_deepest(root.right,depth+1)
+'''
+
+
+   #O(N)
+    def find_deepest(self,root,depth,maxdepth,deepestNode):
+        if root is None:
+            return (None,None)
+        if root.left is None and root.right is None:
+            if depth > maxdepth:
+                maxdepth=depth
+                deepestNode=root.data
+            return (maxdepth,deepestNode)
+        if root.left:
+            return self.find_deepest(root.left,depth+1,maxdepth,deepestNode)
+        if root.right:
+            return self.find_deepest(root.right,depth+1,maxdepth,deepestNode)
+
