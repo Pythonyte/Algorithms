@@ -1,0 +1,102 @@
+#Algorithm 1:
+'''
+loop from 1 till Tree's Depth:
+  call level_order_traversal(root,depth)
+  
+function level_order_traversal(root,depth):
+  if depth is zero : print root.data
+  call for left child recursivly with depth -1 untill depth become 0
+  call for right child recursivly with depth -1 untill depth become 0
+  # by this if function called with d depth , it will print elements of that depth only (from left to right)
+  
+'''
+# Will print all elements levelWise O(N^2)
+
+    def level_order_traversal(self,root,depth):
+        if root is None:
+            return print('Tree is empty')
+        if depth == 0:
+            print(root.data,' ',end='')
+        if root.left:
+            self.level_order_traversal(root.left,depth-1)
+        if root.right:
+            self.level_order_traversal(root.right,depth-1)
+
+    def print_tree_levelwise(self):
+        depth=self.maxDepth(self.root)
+        for d in range(0,depth+1):
+            self.level_order_traversal(self.root,d)
+
+    # implementation with Queue:
+    # Time taken: O(N)
+    # space taken: O(N)
+
+
+
+
+
+
+
+#Algorithm 2:
+'''
+Make a Queue
+take root in temp
+while temp is there:
+  print temp
+  put left then right child of temp in que
+  replace temp with Dequeue by one element
+
+  # by this way : u will insert left then right elements in Q , then there left and right childs in Q and printing qhile dqueuing.
+'''
+# Will print all elements levelWise O(N)
+    def Level_Order_Traversal(self):
+        if self.root is None:
+            print('Tree is empty.')
+            return
+        print("\nLevel_Order_Traversal:")
+        temp=self.root
+        Q=Queue()
+        while temp:
+            print(temp.data,' ',end='')
+            if temp.left:
+                Q.enqueue(temp.left)
+            if temp.right:
+                Q.enqueue(temp.right)
+            temp=Q.dequeue()
+
+
+
+
+
+
+#Algorithm 3:
+'''
+Same as Algo 2:
+But While inserting , insert the level of that element also:
+So while printing, we  can check if level increases then have to move to next line.
+'''
+# this will print per level per line O(N)
+    def LOT(self):
+        temp=self.root
+        level=1
+        next=2
+        Q=Queue()
+        Q.enqueue(temp)
+        Q.enqueue(level)
+        while temp:
+            temp=Q.dequeue()
+            level=Q.dequeue()
+            if level and int(level) > next:
+                print("\n")
+            next=level
+            if temp:
+                #print(temp.data,' ',level,' ',end='')
+                print(temp.data,' ',end='')
+                if temp.left:
+                    Q.enqueue(temp.left)
+                    Q.enqueue(level+1)
+                if temp.right:
+                    Q.enqueue(temp.right)
+                    Q.enqueue(level+1)
+
+
