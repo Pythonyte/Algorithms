@@ -16,18 +16,36 @@ function Find_deepest(root,depth):
     Find_deepest(root.right,depth+1)
 '''
 
+    maxdepth=0
+    deepestNode=0
 
-   #O(N)
-    def find_deepest(self,root,depth,maxdepth,deepestNode):
-        if root is None:
-            return (None,None)
+    def get_deepest_node(self):
+        self.find_deepest(self.root,0)
+        print('Deepest Node is: ',self.maxdepth,' at depth: ',self.deepestNode)
+
+    def find_deepest(self,root,depth):
+
         if root.left is None and root.right is None:
-            if depth > maxdepth:
-                maxdepth=depth
-                deepestNode=root.data
-            return (maxdepth,deepestNode)
+            if depth > self.maxdepth:
+                self.maxdepth=depth
+                self.deepestNode=root.data
+                #print(root.data,maxdepth,deepestNode,depth)
+            return (self.maxdepth,self.deepestNode)
         if root.left:
-            return self.find_deepest(root.left,depth+1,maxdepth,deepestNode)
+            self.find_deepest(root.left,depth+1)
         if root.right:
-            return self.find_deepest(root.right,depth+1,maxdepth,deepestNode)
+            self.find_deepest(root.right,depth+1)
 
+
+
+
++++++++++++++++++++++
+import Binary_Search_Tree
+B1=Binary_Search_Tree.BST()
+B1.insert_node(B1.root,25)
+B1.insert_node(B1.root,20)
+B1.insert_node(B1.root,35)
+B1.insert_node(B1.root,32)
+B1.get_deepest_node()
+
+OUTPUT=>   Deepest Node is:  2  at depth:  32
