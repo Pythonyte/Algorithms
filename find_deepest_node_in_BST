@@ -21,12 +21,12 @@ function Find_deepest(root,depth):
 
     def get_deepest_node(self):
         self.find_deepest(self.root,0)
-        print('Deepest Node is: ',self.maxdepth,' at depth: ',self.deepestNode)
+        print('Deepest Node is: ',self.deepestNode,' at depth: ',self.maxdepth)
 
     def find_deepest(self,root,depth):
 
         if root.left is None and root.right is None:
-            if depth > self.maxdepth:
+            if depth >= self.maxdepth:
                 self.maxdepth=depth
                 self.deepestNode=root.data
                 #print(root.data,maxdepth,deepestNode,depth)
