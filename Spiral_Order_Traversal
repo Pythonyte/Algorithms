@@ -1,0 +1,71 @@
+#Algorithm1:
+# Make a Q
+# make temp = root
+# insert temp and level 1 in Q
+# print root 
+# whie temp is there
+# Dequeue node and level and enqueue their corresponding children with levels in Q
+# while enqueing childern add nodes in a temp array
+# if next level occured check that level is even or odd
+# if level is odd : reverse temparray , print and delete
+# if level is even : print temparray and delete
+
+def Spiral_LOT(self):
+        temp=self.root
+        level=1
+        next=2
+        Q=Queue()
+        Q.enqueue(temp)
+        Q.enqueue(level)
+        print("\nLevel Order Traversal:\n")
+        print(temp.data)
+        while temp:
+            temp=Q.dequeue()
+            level=Q.dequeue()
+            if level and int(level) > next:
+                if level%2==0:
+                    print(self.temparr)
+                else:
+                    self.temparr.reverse()
+                    print(self.temparr)
+                self.temparr=[]
+                print("\n")
+
+            next=level
+            if temp:
+                
+                if temp.left:
+                    Q.enqueue(temp.left)
+                    Q.enqueue(level+1)
+                    self.temparr.append(temp.left.data)
+
+                if temp.right:
+                    Q.enqueue(temp.right)
+                    Q.enqueue(level+1)
+                    self.temparr.append(temp.right.data)
+
+
+
+
+
+
+# Algorithm :
+
+'''
+loop from 1 till Tree's Depth:
+  temp='odd' if level is odd
+  temp='even' if level is even
+  call level_order_traversal(root,depth,temp)
+  
+function level_order_traversal(root,depth,flag):
+  if depth is zero : print root.data
+  
+  if flag is odd: ( start from right)
+    call for right child recursivly with depth -1 untill depth become 0
+    call for left child recursivly with depth -1 untill depth become 0
+  
+  if flag is even: ( start from left)
+    call for left child recursivly with depth -1 untill depth become 0
+    call for right child recursivly with depth -1 untill depth become 0
+    
+  # by this if function called with d depth , it will print elements of that depth only (from left to right)
