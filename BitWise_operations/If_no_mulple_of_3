@@ -1,0 +1,29 @@
+def is_num_multiple_of_3(number):
+    odd_pos_sets=0
+    even_pos_sets=0
+    if number == 1:
+        return print('not multiple of 3')
+    if number == 0:
+        return print('multiple of 3')
+    while number:
+        if number&1: # means rightmost bit is set
+            odd_pos_sets+=1
+        number = number >> 1
+        if number&1: # means rightmost bit is set
+            even_pos_sets+=1
+        number = number >> 1
+    is_num_multiple_of_3(odd_pos_sets-even_pos_sets)
+
+is_num_multiple_of_3(22)
+
+Algorithm: isMutlipleOf3(n)
+1) Make n positive if n is negative.
+2) If number is 0 then return 1
+3) If number is 1 then return 0
+4) Initialize: odd_count = 0, even_count = 0
+5) Loop while n != 0
+    a) If rightmost bit is set then increment odd count.
+    b) Right-shift n by 1 bit
+    c) If rightmost bit is set then increment even count.
+    d) Right-shift n by 1 bit
+6) return isMutlipleOf3(odd_count - even_count)
