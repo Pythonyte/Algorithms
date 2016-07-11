@@ -1,0 +1,33 @@
+def count_set_bits(number):
+    count=0
+    while number:
+        count += number&1
+        number = number >> 1
+    return count
+
+def check_num_is_pow2(number):
+    if count_set_bits(number) == 1:
+        return str(number) + ' is power of 2'
+    else:
+        return str(number) + ' is not power of 2'
+
+
+def check_num_is_power2(number):
+    return not number & number-1
+
+number=input()
+print(check_num_is_pow2(int(number)))
+print(check_num_is_power2(int(number)))
+
+
+Note:
+*
+Any number which is power of 2 has only single set bit in binary :
+2 = 10
+4 = 100
+8 = 1000
+16 = 10000
+
+*
+Just prev number of power of 2 is full of 1s.
+so and of num and num-1 must be zero.
