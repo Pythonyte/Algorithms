@@ -1,0 +1,31 @@
+def count_set_bits(number):
+    count=0
+    while number:
+        count += number&1
+        number = number >> 1
+    return count
+
+
+number = input()
+print(count_set_bits(int(number)))
+
+
+
+Example:
+number=5 (101)
+
+*
+101 & 1 =  1  => count = 1
+101 >> 1 = 10 
+
+*
+10 & 1 = 0 => count is still 1
+10 >> 1 = 1
+
+*
+1 & 1 = 1 => count is 2
+1 >> 1 = 0 
+
+loop will exit as number become 0
+Ans => count = 2
+
