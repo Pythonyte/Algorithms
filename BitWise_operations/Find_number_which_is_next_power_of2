@@ -1,0 +1,15 @@
+import math 
+
+# space O(1)
+# time O(1)
+def find_next_pow2(N):
+  if N & N-1 == 0:
+      return N
+  return 1 << floor(log2(17)) + 1
+
+
+'''
+check if number itself is in power of 2 : return 
+if not then return new number (is of pow of 2)
+'''
+
