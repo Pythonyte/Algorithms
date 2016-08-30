@@ -1,0 +1,21 @@
+count=0
+def return_string(arr):
+    return ''.join(map(str,arr))
+
+def Permutation(arr,start):
+    global count
+    length=len(arr)
+    if start == length:
+        count+=1
+        print('Set:',count,return_string(arr))
+        return
+    for i in range(start,length):
+        temparr=list(arr)
+        temparr[start],temparr[i]=temparr[i],temparr[start]
+        #print('start and length: ',start,length,'==',return_string(arr),return_string(temparr))
+        Permutation(temparr,start+1)
+
+
+Num=int(input('Enter the number:'))
+arr=list(range(1,Num+1))
+Permutation(arr,0)
