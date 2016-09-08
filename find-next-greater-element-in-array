@@ -1,0 +1,19 @@
+Time: O(N)
+def find_next_greater(arr):
+    #push first element in temparray
+    temparr=[arr[0]]
+    for next in range(1,len(arr)):
+        check=len(temparr)-1
+        while check >= 0 and temparr[check] < arr[next]:
+            print(temparr[check],"==>",arr[next])
+            #keep poping all elements, which are lesser than given next element.
+            # if element is still dont have greater element, it will be remain in temparr only
+            del(temparr[check])
+            check-=1
+        
+        #push element in temp array 
+        temparr.append(arr[next])
+    
+    #remaining elements in temparr have no values greater than them in right side
+    for element in temparr:
+        print(element,"==>NULL")
