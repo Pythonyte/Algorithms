@@ -43,7 +43,8 @@ A: array [11,6,7,3,4]
 # i=4 print:7 dq=7,3
     cdn1: dq=7,3
     cnd2: dq=7,3
-    dq=7,3
+    dq=7,3,4
 
+#after loop    print 7
 '''
 
