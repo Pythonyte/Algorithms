@@ -1,0 +1,49 @@
+
+'''
+dequeue is there: we will maintain it in a way so that, all the time max element would be in front. and dqueue will go in decreasing order.
+A: array [11,6,7,3,4]
+N: size of array
+K: size of window
+for each i from 0 to K:
+    while dq is not empty and a[front element of dq] is less than a[i]:
+        remove front of dq
+    push i in back of dq
+
+#after end of above for loop, we will have all element's index in dq, (from desc sorted order of their values) and only values which are greater of current value in left.
+#in example :
+#i=0:   dq=index(11)
+#i=1:   dq=index (11,6)
+#i=2:   dq=index(11,7)
+
+
+for each i=K to N:
+    print A[front of dq] as it is (max of previous window)
+
+    #condition1: remove all elements which are out of scope: (that's why we are storing indexes not values in dq)
+    windowstart=i-k+1
+    while dq is not empty and dq.front < windowstart:
+        :return front of dq
+
+    #condition2: Now we are indexes in dq, whose are in scope and max till now. now add new element of index and        remove all elements who are less then current .
+    while dq is not empty and a[front element of dq] is less than a[i]:
+        remove front of dq
+
+    # push that element in back.. for the next upcoming windows
+    push i in back of dq
+
+print A[front of dq] as it is (max of previous window)
+
+#in example:
+A: array [11,6,7,3,4]
+#i=3  print:11 dq=11,7
+    cnd1: dq=7
+    cnd2: dq=7
+    dq=7,3
+
+# i=4 print:7 dq=7,3
+    cdn1: dq=7,3
+    cnd2: dq=7,3
+    dq=7,3
+
+'''
+
