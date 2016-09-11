@@ -1,0 +1,33 @@
+##Time==> O(N)
+def max_dist_substr(string):
+    chararr=[None]*130
+    maxstr=0
+    store=[]
+    
+    #terate for each charater of string
+    for i in range(len(string)):
+        # if it comes first time, not duplicate, push in chararr and store array.
+        if not chararr[ord(string[i])]:
+            chararr[ord(string[i])]=1
+            store.append(string[i])
+        else:# duplicate element comes..
+            #find length of substr till now.. ( which dont have duplicate)
+            maxstr=max(maxstr,len(store)) 
+            
+            #remove all elements on or bfore of duplcate element's fisrt occurance
+            while store:
+                chararr[ord(store[0])]=None
+                if store[0] == string[i]:
+                    del store[0]
+                    break
+                else:
+                    del store[0]
+            #Now stoe have only elements after the first occurence of duplicate elenent
+            
+            #store current (ith) element in store and char array
+            store.append(string[i])
+            chararr[ord(string[i])]=i
+
+    # get maximum string ..after loop .. 
+    maxstr=max(maxstr,len(store))
+    print(string,maxstr)
