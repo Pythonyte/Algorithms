@@ -1,0 +1,28 @@
+'''
+time=> O(N)
+space-> O(1)
+
+Algorithm
+big=null
+for each element (i) of array from end to start:
+  set greatest of ith element is big
+  replace big with ith element if ith element is greater than big
+'''
+
+def next_greatest(arr):
+    print('Before==>',arr)
+    greatest=None
+    for i in range(len(arr)-1,-1,-1):
+        temp=arr[i]
+        arr[i]=greatest
+        if greatest is None or temp>greatest: greatest=temp
+    print('After==>',arr)
+
+
+arr=[5,6,9,12,7,8]
+arr=[12,8,6,5,3]
+arr=[1,2,3,4,5,6,7,8,9]
+arr=[6,5,4,3,2,1]
+arr=[3,4,4,4,5,6,6]
+arr=[4,3,3,2,2]
+next_greatest(arr)
