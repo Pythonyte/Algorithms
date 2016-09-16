@@ -26,7 +26,7 @@ for each i=K to N:
 
     #condition2: Now we are indexes in dq, whose are in scope and max till now. now add new element of index and        remove all elements who are less then current .
     while dq is not empty and a[front element of dq] is less than a[i]:
-        remove front of dq
+        remove back of dq
 
     # push that element in back.. for the next upcoming windows
     push i in back of dq
