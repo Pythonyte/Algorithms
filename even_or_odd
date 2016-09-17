@@ -1,0 +1,26 @@
+#Mathod0: with modulus
+def isEven1(num):
+    return num%2 == 0
+
+#Mathod1: divide operator
+def isEven2(num):
+    return num/2 == int(num/2)
+
+#mathod2: with AND operator
+def isEven3(num):
+    return not num & 1
+
+
+#mathod3 : with SHIFT OPERATOR
+def isEven4(num):
+    return (num>>1)<<1 == num
+
+print(isEven1(4))
+print(isEven2(4))
+print(isEven3(4))
+print(isEven4(4))
+
+print(isEven1(5))
+print(isEven2(5))
+print(isEven3(5))
+print(isEven4(5))
