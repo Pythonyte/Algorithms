@@ -1,0 +1,38 @@
+def getColumnValues(Matrix,column):
+    return  [Matrix[row][column] for row in range(len(Matrix))]
+
+def getRowValues(Matrix,row):
+    return Matrix[row]
+
+def dotproduct(row,col):
+    if len(row) != len(col):return 'not possible!!'
+    sum=0
+
+    for i in range(len(row)):
+        sum+=row[i]*col[i]
+    return sum
+
+def Multiplication(M1,M2):
+    M1Rows=len(M1)
+    M1Cols=len(M1[0])
+    M2Rows=len(M2)
+    M2Cols=len(M2[0])
+    if M1Cols==M2Rows:
+        M3=[[None]*M2Cols for i in range(M1Rows)]
+        for rownumber in range(M1Rows):
+            for colnumber in range(M2Cols):
+                M3[rownumber][colnumber]=dotproduct(getRowValues(M1,rownumber),getColumnValues(M2,colnumber))
+        return M3
+    else:
+        return 'Multiplication not possible!!'
+
+
+
+M2=[
+    [10],
+    [20],
+    [30],
+    [40]
+    ]
+M1=[[4,3,2,1]]
+print(Multiplication(M1,M2))
