@@ -1,4 +1,4 @@
-
+# 
 def Repostion_values_all_directions(M,i,j):
 
     #size of matrix (rows or cols)
