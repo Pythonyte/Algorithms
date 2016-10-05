@@ -1,0 +1,38 @@
+#time O(n^2)
+
+def findLIS(LS,array,i):
+    val=0
+    
+    # finding LS of ith index. 
+    # checking all prev indexex LS with condition:
+    # if prev index array element is less ith ith element of array
+    for j in range(i):
+        if array[j] < array[i]:
+            if LS[j] > val:
+                val=LS[j]
+    return val
+
+def LIS(array):
+    #LS will hold count of longest increasing sequence till in index of array
+    LS=[None]*len(array)
+    
+    # so for index i , count of LIS will be .. 1 + max of LS of all previous indeces.
+    # while counting max we will be aware of checking only those index's LS , which are less than current value..
+    
+    
+    liscount=0
+    for i in range(len(array)):
+        LS[i]=findLIS(LS,array,i) + 1
+        
+        #storing LIS count in  liscount till ith index
+        if liscount < LS[i]:
+            liscount=LS[i]
+    return liscount
+
+
+
+
+array=[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+array=[ 10, 6, 14, 1, 9, 5, 13, 3, 11, 7]
+
+print(LIS(array))
