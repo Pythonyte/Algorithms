@@ -1,0 +1,20 @@
+def divideNum(number,base):
+    return int(number/base),number%base
+
+def mapping(number):
+    mapingdict={10:'A',11:'B',12:'C',13:'D',14:'E',15:'F'}
+    return mapingdict[number]  if number in mapingdict else str(number)
+
+def getHexofDecimal(number):
+    ans=''
+    while number>=16:
+        (dividend,carry)=divideNum(number,16)
+        ans=mapping(carry) + '' + ans
+        number=dividend
+    else:
+        ans=mapping(number) + '' + ans
+    return ans
+
+print(getHexofDecimal(345))
+print(getHexofDecimal(256))
+print(getHexofDecimal(7896))
