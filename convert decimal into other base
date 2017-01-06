@@ -1,0 +1,32 @@
+def divideNum(number,base):
+    return int(number/base),number%base
+
+def mapping(number):
+    mapingdict={10:'A',11:'B',12:'C',13:'D',14:'E',15:'F'}
+    return mapingdict[number]  if number in mapingdict else str(number)
+
+def decimal_to_other(number,base):
+    ans=''
+    while number>=base:
+        (dividend,carry)=divideNum(number,base)
+        ans=mapping(carry) + '' + ans
+        number=dividend
+    else:
+        ans=mapping(number) + '' + ans
+    return ans
+
+
+# to convert into hexadecimal
+print(decimal_to_other(345,16))
+print(decimal_to_other(256,16))
+print(decimal_to_other(7896,16))
+
+# to convert into octal
+print(decimal_to_other(345,8))
+print(decimal_to_other(256,8))
+print(decimal_to_other(7896,8))
+
+# to convert into binary
+print(decimal_to_other(5,2))
+print(decimal_to_other(7,2))
+print(decimal_to_other(7896,2))
