@@ -1,0 +1,47 @@
+# BackTracking
+At one point in Maize,either we can go bottom or forword if that is not blocked.
+
+Make current point Visited.
+For both steps from current point:
+  make that step visited and call recursively for that function.
+  if that leads to solution , return True
+  else make your step unvisited 
+ 
+
+
+Maize=[[0,0,0,-1],
+       [0,-1,0,0],
+       [0,0,-1,0],
+       [0,0,0,0]]
+
+rows=len(Maize)
+cols=len(Maize[0])
+
+def is_path_valid(i,j):
+    return i<rows and j<cols and Maize[i][j] != -1
+
+def give_all_paths(i,j):
+    arr=[]
+    if not is_path_valid(i,j):return arr
+    if is_path_valid(i+1,j):arr.append((i+1,j))
+    if is_path_valid(i,j+1):arr.append((i,j+1))
+    return arr
+
+def FindPathforRat(row,col):
+    print('call:',row,col)
+    if row==rows-1 and col==cols-1:
+        Maize[row][col]=1
+        return True
+    for (r,c) in give_all_paths(row,col):
+        Maize[r][c]=1
+        if FindPathforRat(r,c):
+            return True
+        else:
+            print('call failed',r,c)
+            Maize[r][c]=0
+    return False
+
+Maize[0][0]=1
+FindPathforRat(0,0)
+for row in Maize:
+    print(row)
