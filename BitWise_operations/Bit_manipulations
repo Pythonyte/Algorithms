@@ -1,0 +1,44 @@
+import math
+def get_total_bits(num):
+    output=math.ceil(math.log(num,2))
+    print('Total bits in Number {} ({}) => {} '.format(num,bin(num),output))
+    return output
+
+def get_ith_bit_of_num(num,i):
+    ithbit=1 if (num & (1 << i-1)) else 0
+    print('{}th bit in Number {} ({}) is => {}'.format(i,num,bin(num),ithbit))
+    return ithbit
+
+def set_ith_bit_as_1(num,i):
+    output=num | 1 << i-1
+    print('After setting {}th bit of Number {} ({}) as 1=> {} ({})'.format(i,num,bin(num),output,bin(output)))
+    return output
+
+
+def set_ith_bit_as_0(num,i):
+    output=num & ~(1 << i-1)
+    print('After setting {}th bit of Number {} ({}) as 0=> {} ({})'.format(i,num,bin(num),output,bin(output)))
+    return output
+
+def swap_ith_bit(num,i):
+    output=set_ith_bit_as_0(num,i) if get_ith_bit_of_num(num,i) else set_ith_bit_as_1(num,i)
+    print('After swapping {}th bit of Number {} ({}) => {} ({})'.format(i,num,bin(num),output,bin(output)))
+    return output
+
+if __name__ == '__main__':
+    get_total_bits(11)
+    get_total_bits(5)
+    get_ith_bit_of_num(9,4)
+    get_ith_bit_of_num(-9,4)
+    set_ith_bit_as_1(9,2)
+    set_ith_bit_as_0(9,4)
+    swap_ith_bit(9,3)
+
+'''
+OUTPUT:
+After setting 2th bit of Number 9 (0b1001) as 1=> 11 (0b1011)
+After setting 4th bit of Number 9 (0b1001) as 0=> 1 (0b1)
+3th bit in Number 9 (0b1001) is => 0
+After setting 3th bit of Number 9 (0b1001) as 1=> 13 (0b1101)
+After swapping 3th bit of Number 9 (0b1001) => 13 (0b1101)
+'''
